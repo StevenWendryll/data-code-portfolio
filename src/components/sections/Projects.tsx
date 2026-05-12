@@ -54,7 +54,7 @@ export function Projects() {
           {projects.map((p) => (
             <article
               key={p.title}
-              className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
+              className="group flex flex-col rounded-2xl glass-card overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 hover:border-primary/40"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
                 <img

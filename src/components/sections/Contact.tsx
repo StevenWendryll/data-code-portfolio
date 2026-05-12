@@ -43,12 +43,15 @@ export function Contact() {
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <div className="font-mono text-xs uppercase tracking-widest text-primary mb-3">// contato</div>
+            <div className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
+              // contato
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Vamos conversar sobre <span className="text-gradient">o seu próximo projeto</span>
             </h2>
             <p className="mt-4 text-muted-foreground max-w-md">
-              Aberto a oportunidades em análise de dados, observabilidade e desenvolvimento. Responderei o quanto antes.
+              Aberto a oportunidades em análise de dados, observabilidade e desenvolvimento.
+              Responderei o quanto antes.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

@@ -4,7 +4,10 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section
+      id="inicio"
+      className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
+    >
       <div
         className="absolute inset-0 -z-10 opacity-30 dark:opacity-50"
         style={{
@@ -18,31 +21,30 @@ export function Hero() {
 
       <div className="container mx-auto px-6">
         <div className="max-w-4xl">
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur px-4 py-1.5 text-xs font-mono text-muted-foreground mb-8 animate-fade-in"
-          >
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur px-4 py-1.5 text-xs font-mono text-muted-foreground mb-8 animate-fade-in">
             <span className="h-2 w-2 rounded-full bg-primary animate-blink" />
             disponível para novos projetos
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] animate-slide-up">
-            Transformando <span className="text-gradient">dados em decisões</span> e sistemas em soluções.
+            Transformando <span className="text-gradient">dados em decisões</span> e sistemas em
+            soluções.
           </h1>
 
           <p
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl animate-slide-up"
             style={{ animationDelay: "120ms" }}
           >
-            Analista de Dados <span className="text-foreground">|</span> Power BI, SQL & Microsoft Fabric{" "}
-            <span className="text-foreground">|</span> Foco em Observabilidade.
+            Analista de Dados <span className="text-foreground">|</span> Power BI, SQL & Microsoft
+            Fabric <span className="text-foreground">|</span> Foco em Observabilidade.
           </p>
 
           <p
             className="mt-4 text-base text-muted-foreground max-w-2xl animate-slide-up"
             style={{ animationDelay: "200ms" }}
           >
-            Base sólida em raciocínio lógico e troubleshooting de processos industriais, agora aplicados à
-            área de TI para resolver problemas complexos com pensamento analítico.
+            Base sólida em raciocínio lógico e troubleshooting de processos industriais, agora
+            aplicados à área de TI para resolver problemas complexos com pensamento analítico.
           </p>
 
           <div
@@ -78,9 +80,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div
-          className="hidden lg:flex absolute right-10 bottom-10 items-center gap-2 font-mono text-xs text-muted-foreground"
-        >
+        <div className="hidden lg:flex absolute right-10 bottom-10 items-center gap-2 font-mono text-xs text-muted-foreground">
           <TerminalSquare className="h-4 w-4" />
           <span>$ rola para explorar →</span>
         </div>

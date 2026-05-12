@@ -26,7 +26,9 @@ export function Skills() {
     <section id="skills" className="py-24 md:py-32 bg-secondary/30 relative">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-14">
-          <div className="font-mono text-xs uppercase tracking-widest text-primary mb-3">// stack</div>
+          <div className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
+            // stack
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
             Ferramentas que uso no <span className="text-gradient">dia a dia</span>
           </h2>

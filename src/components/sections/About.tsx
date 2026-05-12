@@ -2,7 +2,11 @@ import { GraduationCap, Lightbulb, Workflow } from "lucide-react";
 import profile from "@/assets/profile.jpg";
 
 const highlights = [
-  { icon: Workflow, title: "Indústria → TI", text: "Transição do setor elétrico/industrial para tecnologia." },
+  {
+    icon: Workflow,
+    title: "Indústria → TI",
+    text: "Transição do setor elétrico/industrial para tecnologia.",
+  },
   { icon: GraduationCap, title: "Formação", text: "Análise e Desenvolvimento de Sistemas." },
   { icon: Lightbulb, title: "Mindset", text: "Pensamento analítico para problemas complexos." },
 ];
@@ -34,20 +38,26 @@ export function About() {
           </div>
 
           <div>
-            <div className="font-mono text-xs uppercase tracking-widest text-primary mb-3">// sobre mim</div>
+            <div className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
+              // sobre mim
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Da bancada industrial às <span className="text-gradient">queries SQL</span>
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Minha trajetória começou no setor elétrico e industrial, onde aprendi a diagnosticar falhas
-                críticas em ambientes de alta complexidade. Esse mesmo método de troubleshooting
-                — observar, hipotetizar, validar — guia hoje meu trabalho com dados e sistemas.
+                Minha trajetória começou no setor elétrico e industrial, onde aprendi a diagnosticar
+                falhas críticas em ambientes de alta complexidade. Esse mesmo método de
+                troubleshooting — observar, hipotetizar, validar — guia hoje meu trabalho com dados
+                e sistemas.
               </p>
               <p>
-                Atualmente curso <span className="text-foreground font-medium">Análise e Desenvolvimento de Sistemas</span>{" "}
-                e atuo construindo dashboards, pipelines e dashboards de observabilidade que conectam dados
-                brutos a decisões de negócio.
+                Atualmente curso{" "}
+                <span className="text-foreground font-medium">
+                  Análise e Desenvolvimento de Sistemas
+                </span>{" "}
+                e atuo construindo dashboards, pipelines e dashboards de observabilidade que
+                conectam dados brutos a decisões de negócio.
               </p>
             </div>
 

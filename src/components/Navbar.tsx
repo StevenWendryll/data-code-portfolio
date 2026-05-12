@@ -26,15 +26,18 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border"
-          : "bg-transparent",
+        scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent",
       )}
     >
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#inicio" className="flex items-center gap-2 font-mono font-semibold tracking-tight">
+        <a
+          href="#inicio"
+          className="flex items-center gap-2 font-mono font-semibold tracking-tight"
+        >
           <BarChart3 className="h-5 w-5 text-primary" />
-          <span>portfolio<span className="text-primary">.</span>dev</span>
+          <span>
+            portfolio<span className="text-primary">.</span>dev
+          </span>
         </a>
 
         <div className="hidden md:flex items-center gap-1">

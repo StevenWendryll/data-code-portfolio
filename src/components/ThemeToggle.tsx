@@ -13,13 +13,18 @@ export function ThemeToggle() {
 
   const toggle = () => {
     const next = !dark;
+    const root = document.documentElement;
+    // Habilita transição de tema apenas durante o toggle (~500ms),
+    // evitando o custo contínuo de um seletor `*` global.
+    root.classList.add("theme-transition");
+    root.classList.toggle("dark", next);
     setDark(next);
-    document.documentElement.classList.toggle("dark", next);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
       /* storage unavailable */
     }
+    window.setTimeout(() => root.classList.remove("theme-transition"), 550);
   };
 
   return (

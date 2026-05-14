@@ -2,19 +2,29 @@ import { ArrowRight, Linkedin, TerminalSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
+const stats = [
+  { k: "5+", v: "Anos analíticos" },
+  { k: "12+", v: "Dashboards" },
+  { k: "100%", v: "Data-driven" },
+] as const;
+
 export function Hero() {
   return (
     <section
       id="inicio"
       className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
     >
-      <div
-        className="absolute inset-0 -z-10 opacity-30 dark:opacity-50"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+      {/* LCP image: rendered as <img> (not background-image) so the browser
+          can apply fetchpriority="high" and the route-level preload hint. */}
+      <img
+        src={heroBg}
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1080}
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30 dark:opacity-50"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/80 to-background" />
       <div className="absolute inset-0 -z-10 grid-bg opacity-40" />
@@ -57,7 +67,12 @@ export function Hero() {
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir perfil no LinkedIn (nova aba)"
+              >
                 <Linkedin className="mr-2 h-4 w-4" /> Meu LinkedIn
               </a>
             </Button>
@@ -67,11 +82,7 @@ export function Hero() {
             className="mt-16 grid grid-cols-3 gap-6 max-w-md animate-fade-in"
             style={{ animationDelay: "500ms" }}
           >
-            {[
-              { k: "5+", v: "Anos analíticos" },
-              { k: "12+", v: "Dashboards" },
-              { k: "100%", v: "Data-driven" },
-            ].map((s) => (
+            {stats.map((s) => (
               <div key={s.v}>
                 <div className="text-2xl md:text-3xl font-bold text-gradient font-mono">{s.k}</div>
                 <div className="text-xs text-muted-foreground mt-1">{s.v}</div>

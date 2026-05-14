@@ -144,12 +144,7 @@
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-  }
+  * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
@@ -158,12 +153,31 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  button, a { transition-duration: 300ms; }
+
+  /* Transição de tema sob demanda: o ThemeToggle adiciona a classe
+     `theme-transition` em <html> por ~500ms — a transição roda APENAS
+     durante a troca de tema, sem custo contínuo do seletor universal. */
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow !important;
+    transition-duration: 500ms !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  /* Microinterações de hover/focus — escopo enxuto, sem `*`. */
+  a, button, input, textarea, select, [role="button"], [role="tab"], [role="link"] {
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
   button:active, a:active { transform: scale(0.96); }
   svg { transition: color 300ms ease, filter 300ms ease, transform 300ms ease; }
   a:hover svg, button:hover svg {
     filter: drop-shadow(0 0 6px color-mix(in oklab, var(--color-primary) 60%, transparent));
   }
+
   /* Respeita preferências de redução de movimento (WCAG 2.3.3). */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useId, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,30 +14,54 @@ const schema = z.object({
   email: z.string().trim().email("Email inválido").max(255),
   message: z.string().trim().min(10, "Mensagem muito curta").max(1000),
 });
+type ContactData = z.infer<typeof schema>;
 
 const socials = [
   { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
   { icon: Github, label: "GitHub", href: "https://github.com" },
   { icon: Mail, label: "E-mail", href: "mailto:contato@exemplo.com" },
-];
+] as const;
+
+// Allow only safe protocols to prevent javascript:/data: XSS via dynamic href.
+const SAFE_PROTOCOLS = new Set(["https:", "mailto:"]);
+function safeHref(raw: string): string | undefined {
+  try {
+    const url = new URL(raw);
+    return SAFE_PROTOCOLS.has(url.protocol) ? url.toString() : undefined;
+  } catch {
+    return undefined;
+  }
+}
 
 export function Contact() {
-  const [data, setData] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const nameId = useId();
+  const emailId = useId();
+  const messageId = useId();
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = schema.safeParse(data);
-    if (!result.success) {
-      toast.error(result.error.issues[0].message);
-      return;
-    }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactData>({
+    resolver: zodResolver(schema),
+    mode: "onTouched",
+  });
+
+  const safeSocials = useMemo(
+    () => socials.map((s) => ({ ...s, href: safeHref(s.href) })).filter((s) => s.href),
+    [],
+  );
+
+  const onSubmit = (data: ContactData) => {
     setLoading(true);
     setTimeout(() => {
       toast.success("Mensagem enviada! Retornarei em breve.");
-      setData({ name: "", email: "", message: "" });
+      reset();
       setLoading(false);
     }, 700);
+    void data;
   };
 
   return (
@@ -55,15 +81,16 @@ export function Contact() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {socials.map((s) => (
+              {safeSocials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} (abre em nova aba)`}
                   className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm hover:border-primary hover:text-primary transition-colors"
                 >
-                  <s.icon className="h-4 w-4" />
+                  <s.icon className="h-4 w-4" aria-hidden="true" />
                   {s.label}
                 </a>
               ))}
@@ -71,43 +98,84 @@ export function Contact() {
           </div>
 
           <form
-            onSubmit={submit}
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+            aria-labelledby="contact-form-heading"
             className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-card space-y-5"
           >
+            <h3 id="contact-form-heading" className="sr-only">
+              Formulário de contato
+            </h3>
+
             <div className="space-y-2">
-              <Label htmlFor="name">Nome</Label>
+              <Label htmlFor={nameId}>Nome</Label>
               <Input
-                id="name"
-                value={data.name}
-                onChange={(e) => setData({ ...data, name: e.target.value })}
+                id={nameId}
                 placeholder="Seu nome"
                 maxLength={100}
+                autoComplete="name"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? `${nameId}-err` : undefined}
+                {...register("name")}
               />
+              {errors.name && (
+                <p
+                  id={`${nameId}-err`}
+                  role="alert"
+                  className="text-xs font-medium text-destructive"
+                >
+                  {errors.name.message}
+                </p>
+              )}
             </div>
+
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor={emailId}>Email</Label>
               <Input
-                id="email"
+                id={emailId}
                 type="email"
-                value={data.email}
-                onChange={(e) => setData({ ...data, email: e.target.value })}
                 placeholder="voce@email.com"
                 maxLength={255}
+                autoComplete="email"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? `${emailId}-err` : undefined}
+                {...register("email")}
               />
+              {errors.email && (
+                <p
+                  id={`${emailId}-err`}
+                  role="alert"
+                  className="text-xs font-medium text-destructive"
+                >
+                  {errors.email.message}
+                </p>
+              )}
             </div>
+
             <div className="space-y-2">
-              <Label htmlFor="message">Mensagem</Label>
+              <Label htmlFor={messageId}>Mensagem</Label>
               <Textarea
-                id="message"
-                value={data.message}
-                onChange={(e) => setData({ ...data, message: e.target.value })}
+                id={messageId}
                 placeholder="Conte um pouco sobre o projeto..."
                 rows={5}
                 maxLength={1000}
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? `${messageId}-err` : undefined}
+                {...register("message")}
               />
+              {errors.message && (
+                <p
+                  id={`${messageId}-err`}
+                  role="alert"
+                  className="text-xs font-medium text-destructive"
+                >
+                  {errors.message.message}
+                </p>
+              )}
             </div>
+
             <Button type="submit" disabled={loading} className="w-full shadow-elegant">
-              <Send className="mr-2 h-4 w-4" />
+              <Send className="mr-2 h-4 w-4" aria-hidden="true" />
               {loading ? "Enviando..." : "Enviar mensagem"}
             </Button>
           </form>

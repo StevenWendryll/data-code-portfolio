@@ -6,9 +6,32 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  ScriptOnce,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+
+// Pre-hydration script: applies the persisted theme before first paint to
+// prevent Flash Of Wrong Theme (FOWT) under SSR. Defaults to dark.
+const themeBootstrapScript = `(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':true;if(d)document.documentElement.classList.add('dark');}catch(e){document.documentElement.classList.add('dark');}})();`;
+
+// Content Security Policy:
+// - 'unsafe-inline' for scripts/styles is required by SSR hydration scripts
+//   and Tailwind/inline style attributes; tighten with nonces if all inline
+//   styles are removed.
+// - 'self' + data:/blob: covers bundled images and avatar/og previews.
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "connect-src 'self' https:",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join("; ");
+
 
 function NotFoundComponent() {
   return (
@@ -72,6 +95,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { httpEquiv: "Content-Security-Policy", content: csp },
+      { name: "referrer", content: "strict-origin-when-cross-origin" },
       { title: "Lovable App" },
       { name: "description", content: "Lovable Generated Project" },
       { name: "author", content: "Lovable" },
@@ -96,11 +121,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body>
+        <ScriptOnce>{themeBootstrapScript}</ScriptOnce>
         {children}
         <Scripts />
       </body>

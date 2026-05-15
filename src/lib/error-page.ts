@@ -1,3 +1,9 @@
+// SAFETY: this HTML is rendered as a last-resort fallback when the SSR entry
+// itself failed. It MUST stay self-contained — no app imports, no user input
+// interpolation, no template values. The string is a fixed literal so it is
+// safe to send as `text/html` even with the inline `onclick` handler below.
+// If you ever need to interpolate dynamic data here, escape it and re-review
+// the CSP defined in src/routes/__root.tsx.
 export function renderErrorPage(): string {
   return `<!doctype html>
 <html lang="en">

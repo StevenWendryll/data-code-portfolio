@@ -21,10 +21,11 @@ export function About() {
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border shadow-elegant">
               <img
                 src={profile}
-                alt="Foto de perfil"
+                alt="Retrato profissional do analista de dados e desenvolvedor"
                 width={768}
                 height={768}
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -65,7 +66,7 @@ export function About() {
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
               {highlights.map((h) => (
                 <div key={h.title} className="rounded-xl border border-border bg-card/50 p-4">
-                  <h.icon className="h-5 w-5 text-primary mb-2" />
+                  <h.icon className="h-5 w-5 text-primary mb-2" aria-hidden="true" />
                   <div className="text-sm font-semibold">{h.title}</div>
                   <div className="text-xs text-muted-foreground mt-1">{h.text}</div>
                 </div>

@@ -1,12 +1,27 @@
+import { lazy, Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
-import { Skills } from "@/components/sections/Skills";
-import { Projects } from "@/components/sections/Projects";
-import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
+
+// Below-the-fold sections lazy-loaded to keep the initial bundle slim.
+const About = lazy(() =>
+  import("@/components/sections/About").then((m) => ({ default: m.About })),
+);
+const Skills = lazy(() =>
+  import("@/components/sections/Skills").then((m) => ({ default: m.Skills })),
+);
+const Projects = lazy(() =>
+  import("@/components/sections/Projects").then((m) => ({ default: m.Projects })),
+);
+const Contact = lazy(() =>
+  import("@/components/sections/Contact").then((m) => ({ default: m.Contact })),
+);
+const Footer = lazy(() =>
+  import("@/components/sections/Footer").then((m) => ({ default: m.Footer })),
+);
+
+const SectionFallback = () => <div className="min-h-[40vh]" aria-hidden="true" />;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,12 +48,16 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <Suspense fallback={<SectionFallback />}>
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       <Toaster />
     </div>
   );

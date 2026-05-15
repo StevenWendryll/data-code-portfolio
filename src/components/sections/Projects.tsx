@@ -51,43 +51,54 @@ export function Projects() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p) => (
-            <article
-              key={p.title}
-              className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="relative aspect-16/10 overflow-hidden bg-secondary">
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  width={1024}
-                  height={640}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
-              </div>
-              <div className="flex flex-col flex-1 p-6">
-                <h3 className="text-lg font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
-                <div className="flex flex-wrap gap-1.5 mt-4">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-accent text-accent-foreground"
-                    >
-                      {t}
-                    </span>
-                  ))}
+          {projects.map((p) => {
+            const isExternal = typeof p.link === "string" && /^https?:\/\//.test(p.link);
+            return (
+              <article
+                key={p.title}
+                className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="relative aspect-16/10 overflow-hidden bg-secondary">
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    width={1024}
+                    height={640}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
                 </div>
-                <Button asChild variant="outline" size="sm" className="mt-5 w-fit">
-                  <a href={p.link} target="_blank" rel="noreferrer">
-                    <p.icon className="mr-2 h-4 w-4" /> {p.label}
-                  </a>
-                </Button>
-              </div>
-            </article>
-          ))}
+                <div className="flex flex-col flex-1 p-6">
+                  <h3 className="text-lg font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground flex-1">{p.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-accent text-accent-foreground"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Button asChild variant="outline" size="sm" className="mt-5 w-fit">
+                    <a
+                      href={p.link}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      aria-label={
+                        isExternal ? `${p.label}: ${p.title} (nova aba)` : `${p.label}: ${p.title}`
+                      }
+                    >
+                      <p.icon className="mr-2 h-4 w-4" aria-hidden="true" /> {p.label}
+                    </a>
+                  </Button>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

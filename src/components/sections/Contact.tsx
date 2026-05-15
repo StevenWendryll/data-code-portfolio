@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Send, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,9 +14,10 @@ const schema = z.object({
 });
 
 const socials = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: Github, label: "GitHub", href: "https://github.com" },
-  { icon: Mail, label: "E-mail", href: "mailto:contato@exemplo.com" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/steven-wendryll/" },
+  { icon: Github, label: "GitHub", href: "https://github.com/StevenWendryll" },
+  { icon: Mail, label: "E-mail", href: "mailto:stevenwendryll@hotmail.com" },
+  { icon: FileText, label: "Baixar Currículo", href: "/curriculo.pdf" },
 ];
 
 export function Contact() {

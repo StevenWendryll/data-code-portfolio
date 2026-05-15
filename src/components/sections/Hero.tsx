@@ -1,4 +1,4 @@
-import { ArrowRight, Linkedin, TerminalSquare } from "lucide-react";
+import { ArrowRight, Linkedin, TerminalSquare, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -16,14 +16,14 @@ export function Hero() {
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/80 to-background" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background/40 via-background/80 to-background" />
       <div className="absolute inset-0 -z-10 grid-bg opacity-40" />
 
       <div className="container mx-auto px-6">
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur px-4 py-1.5 text-xs font-mono text-muted-foreground mb-8 animate-fade-in">
-            <span className="h-2 w-2 rounded-full bg-primary animate-blink" />
-            disponível para novos projetos
+            <span className="h-2 w-2 rounded-full bg-primary animate-blink" /> disponível para novos
+            projetos
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] animate-slide-up">
@@ -35,8 +35,8 @@ export function Hero() {
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl animate-slide-up"
             style={{ animationDelay: "120ms" }}
           >
-            Analista de Dados <span className="text-foreground">|</span> Power BI, SQL & Microsoft
-            Fabric <span className="text-foreground">|</span> Foco em Observabilidade.
+            Analista de Dados <span className="text-foreground">|</span> Power BI, SQL , Python &
+            Excel <span className="text-foreground">|</span> Foco em automação e observabilidade.
           </p>
 
           <p
@@ -57,32 +57,18 @@ export function Hero() {
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+              <a href="https://www.linkedin.com/in/steven-wendryll/" target="_blank" rel="noreferrer">
                 <Linkedin className="mr-2 h-4 w-4" /> Meu LinkedIn
               </a>
             </Button>
-          </div>
 
-          <div
-            className="mt-16 grid grid-cols-3 gap-6 max-w-md animate-fade-in"
-            style={{ animationDelay: "500ms" }}
-          >
-            {[
-              { k: "5+", v: "Anos analíticos" },
-              { k: "12+", v: "Dashboards" },
-              { k: "100%", v: "Data-driven" },
-            ].map((s) => (
-              <div key={s.v}>
-                <div className="text-2xl md:text-3xl font-bold text-gradient font-mono">{s.k}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.v}</div>
-              </div>
-            ))}
+            <Button asChild variant="outline" size="lg">
+              <a href="/curriculo.pdf" target="_blank" rel="noreferrer">
+                <FileText className="mr-2 h-4 w-4" />
+                Baixar Currículo
+              </a>
+            </Button>
           </div>
-        </div>
-
-        <div className="hidden lg:flex absolute right-10 bottom-10 items-center gap-2 font-mono text-xs text-muted-foreground">
-          <TerminalSquare className="h-4 w-4" />
-          <span>$ rola para explorar →</span>
         </div>
       </div>
     </section>

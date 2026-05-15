@@ -10,7 +10,7 @@ const projects = [
     title: "Sistema de Controle Financeiro",
     desc: "Aplicação web para gestão de finanças pessoais com categorização, gráficos e metas.",
     tags: ["Desenvolvimento Web", "Lógica de Negócios"],
-    link: "https://github.com",
+    link: "https://github.com/StevenWendryll",
     label: "Acessar GitHub",
     icon: Github,
   },
@@ -19,7 +19,7 @@ const projects = [
     title: "Plataforma de Fisioterapia Suzany",
     desc: "Site institucional com painel administrativo no Sanity CMS e blog editorial.",
     tags: ["Vue.js", "CMS", "Tailwind"],
-    link: "#",
+    link: "https://site-suzany.vercel.app/",
     label: "Ver Detalhes",
     icon: ExternalLink,
   },
@@ -56,7 +56,7 @@ export function Projects() {
               key={p.title}
               className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
+              <div className="relative aspect-16/10 overflow-hidden bg-secondary">
                 <img
                   src={p.img}
                   alt={p.title}
@@ -65,7 +65,7 @@ export function Projects() {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
               </div>
               <div className="flex flex-col flex-1 p-6">
                 <h3 className="text-lg font-semibold">{p.title}</h3>

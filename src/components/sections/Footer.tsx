@@ -8,7 +8,7 @@ export function Footer() {
         <div className="flex items-center gap-2 font-mono">
           <BarChart3 className="h-4 w-4 text-primary" />
           <span>
-            portfolio<span className="text-primary">.</span>dev
+            Steven<span className="text-primary">.</span>data
           </span>
         </div>
         <p>© {year} — Todos os direitos reservados.</p>

@@ -46,17 +46,18 @@ export function About() {
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Minha trajetória começou no setor elétrico e industrial, onde aprendi a diagnosticar
-                falhas críticas em ambientes de alta complexidade. Esse mesmo método de
-                troubleshooting — observar, hipotetizar, validar — guia hoje meu trabalho com dados
-                e sistemas.
+                Minha trajetória começou no ambiente militar, onde aprendi valores que carrego até hoje: disciplina, resiliência, liderança e capacidade de tomar decisões sob pressão. Posteriormente, migrei para o setor de elétrica industrial, atuando em ambientes técnicos e operacionais de alta complexidade.
+
+                Agora, direciono essa mesma mentalidade para a área de tecnologia e dados, unindo experiência prática, raciocínio analítico e resolução de problemas para construir soluções orientadas a performance e eficiência.
+
+                Acredito que recomeçar não é voltar ao início, é evoluir com bagagem.
               </p>
               <p>
-                Atualmente curso{" "}
+                Formado em{" "}
                 <span className="text-foreground font-medium">
                   Análise e Desenvolvimento de Sistemas
                 </span>{" "}
-                e atuo construindo dashboards, pipelines e dashboards de observabilidade que
+                e atuo construindo pipelines e dashboards de observabilidade que
                 conectam dados brutos a decisões de negócio.
               </p>
             </div>

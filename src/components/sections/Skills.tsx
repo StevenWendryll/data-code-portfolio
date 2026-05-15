@@ -5,19 +5,19 @@ const groups = [
     icon: BarChart3,
     title: "Análise de Dados",
     accent: "from-primary to-primary-glow",
-    skills: ["Power BI", "SQL", "Microsoft Fabric", "DAX", "ETL"],
+    skills: ["Power BI", "SQL", "Python", "DAX", "ETL", "Excel", "IA"],
   },
   {
     icon: Activity,
     title: "DevOps & Observabilidade",
     accent: "from-primary-glow to-primary",
-    skills: ["Grafana", "Prometheus", "Docker", "Windows Exporter"],
+    skills: ["Grafana", "Prometheus", "Docker", "IA"],
   },
   {
     icon: Code2,
     title: "Desenvolvimento Web",
     accent: "from-primary to-primary-glow",
-    skills: ["Vue.js", "Tailwind CSS", "Sanity (CMS)", "SPA"],
+    skills: ["JavaScript", "Tailwind CSS", "React", "SPA", "IA"],
   },
 ];
 
@@ -43,7 +43,7 @@ export function Skills() {
               key={g.title}
               className="group relative rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-gradient-hero text-primary-foreground mb-5">
                 <g.icon className="h-5 w-5" />
               </div>

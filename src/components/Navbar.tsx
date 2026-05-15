@@ -36,7 +36,7 @@ export function Navbar() {
         >
           <BarChart3 className="h-5 w-5 text-primary" />
           <span>
-            portfolio<span className="text-primary">.</span>dev
+            Steven<span className="text-primary">.</span>data
           </span>
         </a>
 

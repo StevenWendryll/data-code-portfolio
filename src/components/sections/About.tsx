@@ -58,7 +58,7 @@ export function About() {
                 <span className="text-foreground font-medium">
                   Análise e Desenvolvimento de Sistemas
                 </span>{" "}
-                e atuo construindo pipelines e dashboards de observabilidade que
+                atuo construindo pipelines e dashboards de observabilidade que
                 conectam dados brutos a decisões de negócio.
               </p>
             </div>

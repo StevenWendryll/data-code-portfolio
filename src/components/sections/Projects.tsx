@@ -1,22 +1,22 @@
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import finance from "@/assets/project-finance.jpg";
+import powerbi from "@/assets/project-powerbi.jpg";
 import physio from "@/assets/project-physio.jpg";
 import grafana from "@/assets/project-grafana.jpg";
 
 const projects = [
   {
-    img: finance,
-    title: "Sistema de Controle Financeiro",
-    desc: "Aplicação web para gestão de finanças pessoais com categorização, gráficos e metas.",
-    tags: ["Desenvolvimento Web", "Lógica de Negócios"],
-    link: "https://github.com/StevenWendryll",
-    label: "Acessar GitHub",
-    icon: Github,
+    img: powerbi,
+    title: "Dashboard de Eficiência Operacional",
+    desc: "Análise de indicadores de manutenção elétrica industrial, produtividade de equipes (Eletricistas/Técnicos) e gestão de SLAs.",
+    tags: ["Power BI", "SQL", "DAX", "ETL"],
+    link: "#",
+    label: "Em desenvolvimento",
+    icon: ExternalLink,
   },
   {
     img: physio,
-    title: "Plataforma de Fisioterapia Suzany",
+    title: "Plataforma de Fisioterapia",
     desc: "Site institucional com painel administrativo no Sanity CMS e blog editorial.",
     tags: ["Vue.js", "CMS", "Tailwind"],
     link: "https://site-suzany.vercel.app/",
@@ -25,13 +25,13 @@ const projects = [
   },
   {
     img: grafana,
-    title: "Dashboards de Observabilidade",
-    desc: "Monitoramento de infraestrutura com métricas em tempo real e alertas inteligentes.",
+    title: "Centro de Observabilidade Industrial",
+    desc: "Monitoramento em tempo real da saúde de ativos elétricos e infraestrutura de TI com telemetria e alertas inteligentes.",
     tags: ["Grafana", "Prometheus", "Docker"],
     link: "#",
-    label: "Ver Detalhes",
+    label: "Em desenvolvimento",
     icon: ExternalLink,
-  },
+  }
 ];
 
 export function Projects() {

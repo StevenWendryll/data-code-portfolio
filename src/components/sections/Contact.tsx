@@ -171,6 +171,40 @@ export function Contact() {
               )}
             </div>
 
+            <div className="space-y-2">
+              <div className="flex items-start gap-3">
+                <Controller
+                  control={control}
+                  name="consent"
+                  render={({ field }) => (
+                    <Checkbox
+                      id="consent"
+                      checked={!!field.value}
+                      onCheckedChange={(v) => field.onChange(v === true)}
+                      aria-invalid={!!errors.consent}
+                      aria-describedby={errors.consent ? "consent-err" : undefined}
+                      className="mt-0.5"
+                    />
+                  )}
+                />
+                <Label htmlFor="consent" className="text-xs leading-relaxed text-muted-foreground font-normal cursor-pointer">
+                  Li e concordo com o tratamento dos meus dados conforme a{" "}
+                  <Link
+                    to="/politica-de-privacidade"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    Política de Privacidade
+                  </Link>{" "}
+                  (LGPD).
+                </Label>
+              </div>
+              {errors.consent && (
+                <p id="consent-err" role="alert" className="text-xs font-medium text-destructive">
+                  {errors.consent.message}
+                </p>
+              )}
+            </div>
+
             <Button type="submit" disabled={loading} className="w-full shadow-elegant">
               <Send className="mr-2 h-4 w-4" aria-hidden="true" />
               {loading ? "Enviando..." : "Enviar mensagem"}

@@ -1,18 +1,23 @@
 import { useId, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Link } from "@tanstack/react-router";
 import { Github, Linkedin, Mail, Send, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100),
   email: z.string().trim().email("Email inválido").max(255),
   message: z.string().trim().min(10, "Mensagem muito curta").max(1000),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "É necessário aceitar a Política de Privacidade" }),
+  }),
 });
 type ContactData = z.infer<typeof schema>;
 

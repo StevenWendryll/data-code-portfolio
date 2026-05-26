@@ -25,7 +25,7 @@ const socials = [
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/steven-wendryll/" },
   { icon: Github, label: "GitHub", href: "https://github.com/StevenWendryll" },
   { icon: Mail, label: "E-mail", href: "mailto:stevenwendryll@hotmail.com" },
-  { icon: FileText, label: "Baixar Currículo", href: "/src/assets/curriculo-steven.pdf" },
+  { icon: FileText, label: "Baixar Currículo", href: "/public/curriculo.pdf" },
 ];
 
 export function Contact() {

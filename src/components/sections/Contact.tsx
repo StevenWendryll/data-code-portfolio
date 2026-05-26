@@ -38,10 +38,12 @@ export function Contact() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<ContactData>({
     resolver: zodResolver(schema),
     mode: "onTouched",
+    defaultValues: { name: "", email: "", message: "", consent: false as unknown as true },
   });
 
   const safeSocials = useMemo(

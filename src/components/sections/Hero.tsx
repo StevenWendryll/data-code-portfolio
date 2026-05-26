@@ -73,7 +73,7 @@ export function Hero() {
             </Button>
 
             <Button asChild variant="outline" size="lg">
-              <a href="/curriculo.pdf" target="_blank" rel="noreferrer">
+              <a href="/src/assets/Curriculo Steven.pdf" target="_blank" rel="noreferrer">
                 <FileText className="mr-2 h-4 w-4" />
                 Baixar Currículo
               </a>
